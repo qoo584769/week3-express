@@ -67,7 +67,6 @@ const deleteOnePost = async (req, res,next) => {
     let data = {};
     data.id = req.params.id;
     data.str = '刪除單筆'
-    console.log(data);
     const result = await modelOperator(req.method, data);
     if (result.message) {
       HttpMethod(res, 404, 'false', '資料ID錯誤', '刪除單筆資料失敗');

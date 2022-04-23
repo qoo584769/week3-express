@@ -10,14 +10,22 @@ const {
   options,
 } = require('../controller/postController');
 
+// 用來分辨刪除單筆還是全部
+const deleteGate = (req,res,next)=>{
+  if(req.method === 'DELETE' && req.url.startsWith('/posts/')){
+    deleteOnePost(req,res)
+  }else{
+    deleteAllPost(req,res)
+  }
+};
+
 router.get('/posts', getPost);
 // 加上bodyparser
 router.post('/posts',express.json(), postPost);
 // 加上bodyparser
 router.patch('/posts/:id', express.json(), editPost);
-// 這裡post跟post/會跑全部刪除的方法 只要沒放id就是全部刪除
-router.delete('/posts/:id', deleteOnePost);
-router.delete('/posts', deleteAllPost);
+router.delete('/posts/:id', deleteGate);
+router.delete('/posts', deleteGate);
 // options express已經內建
 router.options('/posts', options);
 
