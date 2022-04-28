@@ -10,7 +10,7 @@ const apiDoc = {
   produces: ['application/json'],
   paths: {
     // API的路徑
-    '/post': {
+    '/posts': {
       // API呼叫方法
       get: {
         // API分類 一樣的會放在同一個框
@@ -109,7 +109,7 @@ const apiDoc = {
         },
       },
     },
-    '/post/{id}': {
+    '/posts/{id}': {
       // API呼叫方法
       patch: {
         // API分類 一樣的會放在同一個框
