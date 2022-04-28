@@ -5,7 +5,6 @@ const swaggerSetting = require('./config/swagger');
 const app = express();
 
 const postRouter = require('./routers/postList');
-
 app.use('/', postRouter);
 // bodypaser可以用在這邊全域 也可以放在router裡面
 // app.use(express.json());
