@@ -2,8 +2,6 @@ require('../connections/mongooseDB')
 
 // 用傳進來的model去資料庫搜尋
 async function getDB(schemaModel) {
-  // 等待資料庫連線
-  await DBConnect();
   try {
     const result = await schemaModel.find({});
     return result;
@@ -14,8 +12,6 @@ async function getDB(schemaModel) {
 }
 
 async function postDB(schemaModel, modelData) {
-  // 等待資料庫連線
-  await DBConnect();
   try {
     const result = schemaModel.create(modelData);
     return result;
@@ -38,8 +34,6 @@ async function postDB(schemaModel, modelData) {
 }
 
 async function patchDB(schemaModel, modelData) {
-  // 等待資料庫連線
-  await DBConnect();
   try {
     const query = { _id: modelData.id };
     const exist = await schemaModel.exists(query);
@@ -61,8 +55,6 @@ async function patchDB(schemaModel, modelData) {
 }
 // 直接刪除 未使用軟刪除
 async function deleteOneDB(schemaModel, id) {
-  // 等待資料庫連線
-  await DBConnect();
   try {
     const result = await schemaModel.findOneAndDelete({ _id: id });
     return result;
@@ -72,8 +64,6 @@ async function deleteOneDB(schemaModel, id) {
   }
 }
 async function deleteAllDB(schemaModel) {
-  // 等待資料庫連線
-  await DBConnect();
   try {
     const result = await schemaModel.deleteMany();
     return result;
